@@ -2155,6 +2155,11 @@ public final class Settings {
         public static final String ACCELEROMETER_ROTATION = "accelerometer_rotation";
 
         /**
+         *Control if screen can rotate in any direction
+         */
+        public static final String ALLOW_ALL_ROTATIONS = "allow_all_rotations";
+
+        /**
          * Default screen rotation when no other policy applies.
          * When {@link #ACCELEROMETER_ROTATION} is zero and no on-screen Activity expresses a
          * preference, this rotation value will be used. Must be one of the

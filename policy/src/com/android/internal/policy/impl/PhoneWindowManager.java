@@ -4501,7 +4501,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 if (sensorRotation != Surface.ROTATION_180
                         || mAllowAllRotations == 1
                         || orientation == ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR
-                        || orientation == ActivityInfo.SCREEN_ORIENTATION_FULL_USER) {
+                        || orientation == ActivityInfo.SCREEN_ORIENTATION_FULL_USER
+                        || getUserAllowAllRotations()) {
                     preferredRotation = sensorRotation;
                 } else {
                     preferredRotation = lastRotation;
@@ -4617,6 +4618,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 Settings.System.ACCELEROMETER_ROTATION, 0, UserHandle.USER_CURRENT) != 0 ?
                         WindowManagerPolicy.USER_ROTATION_FREE :
                                 WindowManagerPolicy.USER_ROTATION_LOCKED;
+    }
+
+    public boolean getUserAllowAllRotations() {
+        return Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.ALLOW_ALL_ROTATIONS, 0, UserHandle.USER_CURRENT) != 0 ? true : false;
     }
 
     // User rotation: to be used when all else fails in assigning an orientation to the device
